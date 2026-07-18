@@ -38,11 +38,19 @@ It also appears in the nav link, the player fallback note, and the Connect secti
 
 ## Design
 
-The page deliberately mirrors chiptune-radio's structure — same layout skeleton, same section rhythm, same embed approach — so the stations read as siblings. What distinguishes them is color and display type:
+The page deliberately mirrors chiptune-radio's structure — same layout skeleton, same section rhythm, same embed approach — so the stations read as siblings.
 
-- **Palette** — a channel split, since RGB separation is the visual signature of a glitch. Magenta `#ff2d95` accent against cyan `#2ee6d6` for labels and focus states, on a `#0b0910` ground biased toward magenta rather than a neutral grey. (Chiptune's purple `#6d28d9` stays chiptune's.)
-- **Type** — Archivo for display, Inter for body, JetBrains Mono for labels and data. The latter two are shared brand faces.
-- **Motion** — the "GLITCH" wordmark separates into its magenta and cyan channels and breaks loose for two frames every seven seconds. That plus the live-status dot are the only animations, and both respect `prefers-reduced-motion`.
+- **Palette** — the standard Aleph Void tokens, identical to `alephvoid.com`, `chiptune-radio`, `morphix`, and `virux`. Do not substitute per-site colors here; change them upstream and propagate.
+
+  | Token | Value |
+  | --- | --- |
+  | `--bg-primary` / `--bg-secondary` / `--bg-card` | `#0a0a0f` / `#12121a` / `#16161f` |
+  | `--border` | `#1e1e2e` |
+  | `--text-primary` / `--text-secondary` / `--text-muted` | `#e4e4e7` / `#a1a1aa` / `#71717a` |
+  | `--accent` / `--accent-light` / `--accent-lighter` | `#6d28d9` / `#8b5cf6` / `#a78bfa` |
+
+- **Type** — Inter for body and JetBrains Mono for labels are shared brand faces. Archivo for display headings is specific to this site.
+- **Motion** — the "GLITCH" wordmark separates into the two ends of the accent ramp and breaks loose for two frames every seven seconds, echoing a mis-registered signal. That plus the live-status dot are the only animations, and both respect `prefers-reduced-motion`.
 
 The design commits to a single dark theme, matching the sibling.
 

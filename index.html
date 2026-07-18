@@ -38,22 +38,19 @@
       box-sizing: border-box;
     }
 
-    /*
-      Palette is a channel split: magenta and cyan pulled apart against a
-      near-black that carries a magenta bias rather than a neutral grey.
-    */
+    /* Standard Aleph Void palette — shared with alephvoid.com and sibling sites. */
     :root {
-      --bg-primary: #0b0910;
-      --bg-secondary: #120e19;
-      --bg-card: #191322;
-      --border: #2a1f38;
-      --text-primary: #ece6f0;
-      --text-secondary: #a99cb4;
-      --text-muted: #776a83;
-      --accent: #ff2d95;
-      --accent-light: #ff7ac0;
-      --accent-glow: rgba(255, 45, 149, 0.14);
-      --signal: #2ee6d6;
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #16161f;
+      --border: #1e1e2e;
+      --text-primary: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #6d28d9;
+      --accent-light: #8b5cf6;
+      --accent-lighter: #a78bfa;
+      --accent-glow: rgba(139, 92, 246, 0.15);
 
       --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -73,7 +70,7 @@
     }
 
     :focus-visible {
-      outline: 2px solid var(--signal);
+      outline: 2px solid var(--accent-light);
       outline-offset: 3px;
     }
 
@@ -85,7 +82,7 @@
       right: 0;
       z-index: 100;
       padding: 1rem 2rem;
-      background: rgba(11, 9, 16, 0.85);
+      background: rgba(10, 10, 15, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -127,7 +124,7 @@
       font-family: var(--font-mono);
       font-weight: 400;
       font-size: 0.75rem;
-      color: var(--signal);
+      color: var(--accent-light);
       display: block;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -162,7 +159,7 @@
       overflow: hidden;
     }
 
-    /* Magenta bloom behind the mark. */
+    /* Accent bloom behind the mark. */
     .hero::before {
       content: '';
       position: absolute;
@@ -219,8 +216,8 @@
     }
 
     /*
-      The signature moment: the wordmark separated into its magenta and cyan
-      channels, the way a mis-registered signal actually fails.
+      The signature moment: the wordmark pulled apart into the two ends of the
+      brand ramp, the way a mis-registered signal actually fails.
     */
     .split {
       position: relative;
@@ -246,7 +243,7 @@
     }
 
     .split::after {
-      color: var(--signal);
+      color: var(--accent-lighter);
       mix-blend-mode: screen;
       transform: translate(0.055em, -0.012em);
     }
@@ -293,7 +290,7 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--accent-light);
-      border: 1px solid rgba(255, 45, 149, 0.28);
+      border: 1px solid rgba(139, 92, 246, 0.25);
       background: var(--accent-glow);
       border-radius: 999px;
       padding: 0.4rem 1rem;
@@ -323,7 +320,7 @@
       gap: 0.5rem;
       padding: 0.75rem 1.75rem;
       background: var(--accent);
-      color: #14030c;
+      color: #fff;
       text-decoration: none;
       border-radius: 6px;
       font-weight: 600;
@@ -352,7 +349,7 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--signal);
+      color: var(--accent-light);
       margin-bottom: 0.75rem;
     }
 
@@ -460,7 +457,7 @@
       height: 40px;
       border-radius: 8px;
       background: var(--accent-glow);
-      border: 1px solid rgba(255, 45, 149, 0.28);
+      border: 1px solid rgba(139, 92, 246, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
