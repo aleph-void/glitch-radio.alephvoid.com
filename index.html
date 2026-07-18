@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glitch Radio - Aleph Void, LLC</title>
+  <meta name="description" content="Aleph Void Glitch Radio — a 24/7 glitch, IDM, and clicks-and-cuts stream on Twitch, brought to you by Aleph Void, LLC.">
+  <link rel="canonical" href="https://glitch-radio.alephvoid.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Aleph Void Glitch Radio">
+  <meta property="og:title" content="Glitch Radio — Aleph Void, LLC">
+  <meta property="og:description" content="A 24/7 glitch music stream on Twitch — datamosh, clicks and cuts, broken beats, and signal artifacts, broadcast by Aleph Void, LLC.">
+  <meta property="og:url" content="https://glitch-radio.alephvoid.com/">
+  <meta property="og:image" content="https://glitch-radio.alephvoid.com/assets/logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="256">
+  <meta property="og:image:height" content="256">
+  <meta property="og:image:alt" content="Aleph Void logo — an aleph character on a white background">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Glitch Radio — Aleph Void, LLC">
+  <meta name="twitter:description" content="A 24/7 glitch music stream on Twitch — datamosh, clicks and cuts, broken beats, and signal artifacts, broadcast by Aleph Void, LLC.">
+  <meta name="twitter:image" content="https://glitch-radio.alephvoid.com/assets/logo.png">
+  <meta name="twitter:image:alt" content="Aleph Void logo — an aleph character on a white background">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="icon" type="image/png" href="/assets/logo.png" sizes="256x256">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=EB+Garamond&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /*
+      Palette is a channel split: magenta and cyan pulled apart against a
+      near-black that carries a magenta bias rather than a neutral grey.
+    */
+    :root {
+      --bg-primary: #0b0910;
+      --bg-secondary: #120e19;
+      --bg-card: #191322;
+      --border: #2a1f38;
+      --text-primary: #ece6f0;
+      --text-secondary: #a99cb4;
+      --text-muted: #776a83;
+      --accent: #ff2d95;
+      --accent-light: #ff7ac0;
+      --accent-glow: rgba(255, 45, 149, 0.14);
+      --signal: #2ee6d6;
+
+      --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--signal);
+      outline-offset: 3px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(11, 9, 16, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    nav .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo-mark svg {
+      height: 56px;
+      width: 56px;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 2px solid var(--accent);
+    }
+
+    nav .logo-mark span {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    nav .logo-mark span em {
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: var(--signal);
+      display: block;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 9rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Magenta bloom behind the mark. */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Horizontal tracking lines — a signal that never quite locks. */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.022) 0px,
+        rgba(255, 255, 255, 0.022) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .hero-logo {
+      width: 140px;
+      height: auto;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 2px solid var(--accent);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    /*
+      The signature moment: the wordmark separated into its magenta and cyan
+      channels, the way a mis-registered signal actually fails.
+    */
+    .split {
+      position: relative;
+      display: inline-block;
+      color: var(--text-primary);
+      /* The tight display tracking swallows the following word space. */
+      margin-right: 0.16em;
+    }
+
+    .split::before,
+    .split::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .split::before {
+      color: var(--accent);
+      mix-blend-mode: screen;
+      transform: translate(-0.055em, 0.012em);
+    }
+
+    .split::after {
+      color: var(--signal);
+      mix-blend-mode: screen;
+      transform: translate(0.055em, -0.012em);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .split::before {
+        animation: drift-magenta 7s steps(1, end) infinite;
+      }
+
+      .split::after {
+        animation: drift-cyan 7s steps(1, end) infinite;
+      }
+    }
+
+    /* Mostly still; the displacement only breaks loose for two frames. */
+    @keyframes drift-magenta {
+      0%, 92% { transform: translate(-0.055em, 0.012em); }
+      93% { transform: translate(-0.16em, -0.03em); }
+      95% { transform: translate(0.04em, 0.05em); }
+      97%, 100% { transform: translate(-0.055em, 0.012em); }
+    }
+
+    @keyframes drift-cyan {
+      0%, 92% { transform: translate(0.055em, -0.012em); }
+      93% { transform: translate(0.18em, 0.035em); }
+      95% { transform: translate(-0.03em, -0.055em); }
+      97%, 100% { transform: translate(0.055em, -0.012em); }
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      border: 1px solid rgba(255, 45, 149, 0.28);
+      background: var(--accent-glow);
+      border-radius: 999px;
+      padding: 0.4rem 1rem;
+    }
+
+    .live-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .live-badge .dot {
+        animation: pulse 1.6s ease-in-out infinite;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--accent);
+      color: #14030c;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--signal);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* Player */
+    #listen {
+      padding-top: 1rem;
+    }
+
+    .player-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.5fr) minmax(260px, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .player-frame,
+    .chat-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .player-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+    }
+
+    .player-frame iframe,
+    .chat-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .chat-frame {
+      position: relative;
+      min-height: 400px;
+    }
+
+    .player-note {
+      margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .player-note a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    .player-note a:hover {
+      color: var(--text-primary);
+    }
+
+    /* About */
+    #about {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .about-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .about-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(255, 45, 149, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+
+    .about-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+    }
+
+    .about-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* Connect */
+    .connect-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 480px;
+    }
+
+    .connect-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .connect-link .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .connect-link a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .connect-link a:hover {
+      color: var(--accent-light);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent-light);
+    }
+
+    /* Tablet (768px – 1024px) */
+    @media (max-width: 1024px) {
+      .hero-content {
+        max-width: 600px;
+      }
+
+      .player-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-frame {
+        min-height: 420px;
+      }
+    }
+
+    /* Phone (≤ 767px) */
+    @media (max-width: 767px) {
+      nav {
+        padding: 0.75rem 1.25rem;
+      }
+
+      nav ul {
+        gap: 1.25rem;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+      }
+
+      nav .logo-mark span {
+        display: none;
+      }
+
+      nav .logo-mark svg {
+        height: 44px;
+        width: 44px;
+      }
+
+      .hero {
+        padding: 7rem 1.5rem 2.5rem;
+      }
+
+      .hero::before {
+        width: 360px;
+        height: 360px;
+      }
+
+      .hero-logo {
+        width: 110px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 3rem 1.25rem;
+      }
+    }
+
+    /* Small phone (≤ 479px) */
+    @media (max-width: 479px) {
+      nav {
+        padding: 0.65rem 1rem;
+      }
+
+      nav ul {
+        gap: 0.875rem;
+      }
+
+      nav .logo-mark svg {
+        height: 38px;
+        width: 38px;
+      }
+
+      .hero {
+        padding: 6rem 1rem 2.5rem;
+      }
+
+      .hero-logo {
+        width: 96px;
+      }
+
+      section {
+        padding: 2.5rem 1rem;
+      }
+
+      .about-card {
+        padding: 1.5rem;
+      }
+
+      footer {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="logo-symbol" viewBox="0 0 256 256">
+      <path fill="#000000" fill-rule="evenodd" d="M 74 24 L 69 29 L 65 36 L 65 39 L 64 40 L 65 49 L 67 52 L 67 54 L 69 56 L 72 62 L 76 66 L 76 67 L 91 82 L 93 83 L 93 84 L 81 92 L 70 103 L 65 113 L 65 124 L 70 134 L 70 136 L 72 139 L 72 142 L 73 143 L 73 145 L 70 152 L 66 156 L 66 162 L 67 164 L 103 164 L 108 155 L 109 147 L 108 146 L 108 143 L 106 138 L 101 131 L 89 118 L 85 110 L 85 104 L 88 98 L 93 93 L 98 90 L 100 90 L 134 125 L 134 126 L 140 132 L 140 133 L 153 148 L 165 165 L 168 164 L 173 159 L 176 154 L 176 152 L 177 151 L 177 139 L 172 130 L 157 113 L 153 107 L 152 102 L 151 101 L 151 89 L 152 88 L 152 84 L 153 83 L 154 77 L 156 73 L 162 67 L 168 67 L 169 68 L 171 68 L 173 70 L 175 69 L 175 65 L 176 64 L 176 43 L 174 39 L 168 35 L 159 34 L 158 32 L 157 33 L 148 32 L 144 30 L 141 27 L 141 23 L 139 23 L 134 29 L 131 36 L 131 42 L 130 43 L 131 54 L 133 58 L 137 62 L 141 64 L 144 64 L 145 66 L 146 65 L 150 65 L 151 66 L 151 68 L 147 72 L 143 78 L 143 80 L 141 83 L 141 86 L 140 87 L 140 92 L 139 93 L 137 93 L 100 54 L 100 53 L 95 48 L 95 47 L 85 35 L 79 26 L 78 23 Z"/>
+      <text x="186" y="176" font-family="'EB Garamond', Georgia, serif" font-size="18" fill="#000000">0</text>
+      <text x="128" y="236" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="20" fill="#000000">Aleph Void</text>
+    </symbol>
+  </svg>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo-mark">
+        <svg aria-label="Aleph Void"><use href="#logo-symbol"/></svg>
+        <span>Aleph Void<em>Glitch Radio</em></span>
+      </a>
+      <ul>
+        <li><a href="#listen">Listen</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="https://www.twitch.tv/alephvoidglitchradio" target="_blank" rel="noopener noreferrer">Twitch</a></li>
+        <li><a href="https://alephvoid.com">alephvoid.com</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <svg aria-label="Aleph Void, LLC" class="hero-logo"><use href="#logo-symbol"/></svg>
+      <div><span class="live-badge"><span class="dot"></span>Streaming on Twitch</span></div>
+      <h1><span class="split" data-text="Glitch">Glitch</span> Radio</h1>
+      <p>An around-the-clock stream of glitch — datamosh, clicks and cuts, broken beats, and the artifacts machines make when they fail — broadcast by Aleph Void, LLC.</p>
+      <a href="#listen" class="hero-cta">Tune In &darr;</a>
+    </div>
+  </section>
+
+  <section id="listen">
+    <div class="section-inner">
+      <p class="section-label">// Now Playing</p>
+      <h2 class="section-title">Live Stream</h2>
+
+      <div class="player-grid">
+        <div class="player-frame" id="player"></div>
+        <div class="chat-frame" id="chat"></div>
+      </div>
+      <p class="player-note">Player not loading? Watch directly on <a href="https://www.twitch.tv/alephvoidglitchradio" target="_blank" rel="noopener noreferrer">twitch.tv/alephvoidglitchradio</a>.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label">// About</p>
+      <h2 class="section-title">What Is This?</h2>
+      <p class="section-desc">Glitch Radio is a side project of Aleph Void, LLC — music built out of malfunction, streaming while you work, reverse engineer, or just vibe.</p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">&#x1f4c9;</div>
+          <h3>Sound From Failure</h3>
+          <p>Glitch, IDM, and clicks and cuts — music made from the noise a system makes when it breaks. Corrupted samples, buffer errors, and bit rot, arranged on purpose.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">&#x1f4e1;</div>
+          <h3>Always On</h3>
+          <p>A continuous radio-style broadcast on Twitch. Drop in any time, leave it on in the background, and let the playlist do the work.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">&#x1f47e;</div>
+          <h3>By Aleph Void</h3>
+          <p>Built and operated by Aleph Void, LLC — a software security and reverse engineering firm that spends its days finding the places where systems come apart.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect">
+    <div class="section-inner">
+      <p class="section-label">// Connect</p>
+      <h2 class="section-title">Follow the Signal</h2>
+
+      <div class="connect-links">
+        <div class="connect-link">
+          <span class="icon">&#x1f4fa;</span>
+          <a href="https://www.twitch.tv/alephvoidglitchradio" target="_blank" rel="noopener noreferrer">twitch.tv/alephvoidglitchradio</a>
+        </div>
+        <div class="connect-link">
+          <span class="icon">&#x1f3b5;</span>
+          <a href="https://chiptune-radio.alephvoid.com">chiptune-radio.alephvoid.com</a>
+        </div>
+        <div class="connect-link">
+          <span class="icon">&#x1f310;</span>
+          <a href="https://alephvoid.com">alephvoid.com</a>
+        </div>
+        <div class="connect-link">
+          <span class="icon">&#x2709;</span>
+          <a href="mailto:contact@alephvoid.com">contact@alephvoid.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 <a href="https://alephvoid.com">Aleph Void, LLC</a>. All rights reserved.
+  </footer>
+
+  <script>
+    (function () {
+      var channel = 'alephvoidglitchradio';
+      // Twitch embeds require a `parent` param matching the hosting domain,
+      // so build the iframes from location.hostname to work in dev and prod.
+      var parent = encodeURIComponent(window.location.hostname || 'glitch-radio.alephvoid.com');
+
+      var player = document.createElement('iframe');
+      player.src = 'https://player.twitch.tv/?channel=' + channel + '&parent=' + parent + '&autoplay=true&muted=true';
+      player.allowFullscreen = true;
+      player.allow = 'autoplay; fullscreen';
+      player.title = 'Aleph Void Glitch Radio — Twitch player';
+      document.getElementById('player').appendChild(player);
+
+      var chat = document.createElement('iframe');
+      chat.src = 'https://www.twitch.tv/embed/' + channel + '/chat?parent=' + parent + '&darkpopout';
+      chat.title = 'Aleph Void Glitch Radio — Twitch chat';
+      document.getElementById('chat').appendChild(chat);
+    })();
+  </script>
+
+</body>
+</html>
