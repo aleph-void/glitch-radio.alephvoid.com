@@ -1,12 +1,12 @@
 # glitch-radio.alephvoid.com
 
-Landing page for **Aleph Void Glitch Radio** — a 24/7 glitch music stream on Twitch, operated by Aleph Void, LLC.
+Landing page for **Aleph Void Glitch Radio** — a 24/7 glitch music stream on YouTube, operated by Aleph Void, LLC.
 
 Live at [glitch-radio.alephvoid.com](https://glitch-radio.alephvoid.com/). Sibling station: [chiptune-radio.alephvoid.com](https://chiptune-radio.alephvoid.com/).
 
 ## What it is
 
-A single static HTML page. No build step, no dependencies, no framework — `index.html` contains the markup, styles, and the one script that mounts the Twitch embeds. Deployed via GitHub Pages; `CNAME` pins the custom domain.
+A single static HTML page. No build step, no dependencies, no framework — `index.html` contains the markup, styles, and the one script that mounts the YouTube embeds. Deployed via GitHub Pages; `CNAME` pins the custom domain.
 
 ```
 index.html      markup + inline CSS + embed script
@@ -16,7 +16,7 @@ CNAME           glitch-radio.alephvoid.com
 
 ## Local development
 
-The Twitch embed requires a real HTTP origin, so opening `index.html` via `file://` will leave the player and chat blank. Serve it instead:
+The YouTube embeds require a real HTTP origin, so opening `index.html` via `file://` will leave the player and chat blank. Serve it instead:
 
 ```sh
 python3 -m http.server 8000
@@ -24,14 +24,14 @@ python3 -m http.server 8000
 
 Then visit <http://localhost:8000/>.
 
-The embed builds its `parent` parameter from `window.location.hostname`, which is what Twitch checks against — so `localhost` works in development and the custom domain works in production, with no config to switch between them.
+The live chat embed builds its `embed_domain` parameter from `window.location.hostname`, which is what YouTube checks against — so `localhost` works in development and the custom domain works in production, with no config to switch between them.
 
-## Changing the channel
+## Changing the stream
 
-The Twitch channel is set once, in the script at the bottom of `index.html`:
+The YouTube video ID is set once, in the script at the bottom of `index.html`:
 
 ```js
-var channel = 'alephvoidglitchradio';
+var video = 'BZakJWgnFo4';
 ```
 
 It also appears in the nav link, the player fallback note, and the Connect section. Update all four together.

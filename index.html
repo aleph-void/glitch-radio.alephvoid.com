@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glitch Radio - Aleph Void, LLC</title>
-  <meta name="description" content="Aleph Void Glitch Radio — a 24/7 glitch, IDM, and clicks-and-cuts stream on Twitch, brought to you by Aleph Void, LLC.">
+  <meta name="description" content="Aleph Void Glitch Radio — a 24/7 glitch, IDM, and clicks-and-cuts stream on YouTube, brought to you by Aleph Void, LLC.">
   <link rel="canonical" href="https://glitch-radio.alephvoid.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Aleph Void Glitch Radio">
   <meta property="og:title" content="Glitch Radio — Aleph Void, LLC">
-  <meta property="og:description" content="A 24/7 glitch music stream on Twitch — datamosh, clicks and cuts, broken beats, and signal artifacts, broadcast by Aleph Void, LLC.">
+  <meta property="og:description" content="A 24/7 glitch music stream on YouTube — datamosh, clicks and cuts, broken beats, and signal artifacts, broadcast by Aleph Void, LLC.">
   <meta property="og:url" content="https://glitch-radio.alephvoid.com/">
   <meta property="og:image" content="https://glitch-radio.alephvoid.com/assets/logo.png">
   <meta property="og:image:type" content="image/png">
@@ -22,7 +22,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Glitch Radio — Aleph Void, LLC">
-  <meta name="twitter:description" content="A 24/7 glitch music stream on Twitch — datamosh, clicks and cuts, broken beats, and signal artifacts, broadcast by Aleph Void, LLC.">
+  <meta name="twitter:description" content="A 24/7 glitch music stream on YouTube — datamosh, clicks and cuts, broken beats, and signal artifacts, broadcast by Aleph Void, LLC.">
   <meta name="twitter:image" content="https://glitch-radio.alephvoid.com/assets/logo.png">
   <meta name="twitter:image:alt" content="Aleph Void logo — an aleph character on a white background">
 
@@ -652,7 +652,7 @@
       <ul>
         <li><a href="#listen">Listen</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="https://www.twitch.tv/alephvoidglitchradio" target="_blank" rel="noopener noreferrer">Twitch</a></li>
+        <li><a href="https://youtube.com/live/BZakJWgnFo4?feature=share" target="_blank" rel="noopener noreferrer">YouTube</a></li>
         <li><a href="https://alephvoid.com">alephvoid.com</a></li>
       </ul>
     </div>
@@ -661,7 +661,7 @@
   <section class="hero">
     <div class="hero-content">
       <svg aria-label="Aleph Void, LLC" class="hero-logo"><use href="#logo-symbol"/></svg>
-      <div><span class="live-badge"><span class="dot"></span>Streaming on Twitch</span></div>
+      <div><span class="live-badge"><span class="dot"></span>Streaming on YouTube</span></div>
       <h1><span class="split" data-text="Glitch">Glitch</span> Radio</h1>
       <p>An around-the-clock stream of glitch — datamosh, clicks and cuts, broken beats, and the artifacts machines make when they fail — broadcast by Aleph Void, LLC.</p>
       <a href="#listen" class="hero-cta">Tune In &darr;</a>
@@ -677,7 +677,7 @@
         <div class="player-frame" id="player"></div>
         <div class="chat-frame" id="chat"></div>
       </div>
-      <p class="player-note">Player not loading? Watch directly on <a href="https://www.twitch.tv/alephvoidglitchradio" target="_blank" rel="noopener noreferrer">twitch.tv/alephvoidglitchradio</a>.</p>
+      <p class="player-note">Player not loading? Watch directly on <a href="https://youtube.com/live/BZakJWgnFo4?feature=share" target="_blank" rel="noopener noreferrer">youtube.com/live/BZakJWgnFo4</a>.</p>
     </div>
   </section>
 
@@ -697,7 +697,7 @@
         <div class="about-card">
           <div class="about-icon">&#x1f4e1;</div>
           <h3>Always On</h3>
-          <p>A continuous radio-style broadcast on Twitch. Drop in any time, leave it on in the background, and let the playlist do the work.</p>
+          <p>A continuous radio-style broadcast on YouTube. Drop in any time, leave it on in the background, and let the playlist do the work.</p>
         </div>
 
         <div class="about-card">
@@ -717,7 +717,7 @@
       <div class="connect-links">
         <div class="connect-link">
           <span class="icon">&#x1f4fa;</span>
-          <a href="https://www.twitch.tv/alephvoidglitchradio" target="_blank" rel="noopener noreferrer">twitch.tv/alephvoidglitchradio</a>
+          <a href="https://youtube.com/live/BZakJWgnFo4?feature=share" target="_blank" rel="noopener noreferrer">youtube.com/live/BZakJWgnFo4</a>
         </div>
         <div class="connect-link">
           <span class="icon">&#x1f3b5;</span>
@@ -741,21 +741,21 @@
 
   <script>
     (function () {
-      var channel = 'alephvoidglitchradio';
-      // Twitch embeds require a `parent` param matching the hosting domain,
+      var video = 'BZakJWgnFo4';
+      // The YouTube live chat embed requires an `embed_domain` matching the host,
       // so build the iframes from location.hostname to work in dev and prod.
-      var parent = encodeURIComponent(window.location.hostname || 'glitch-radio.alephvoid.com');
+      var host = encodeURIComponent(window.location.hostname || 'glitch-radio.alephvoid.com');
 
       var player = document.createElement('iframe');
-      player.src = 'https://player.twitch.tv/?channel=' + channel + '&parent=' + parent + '&autoplay=true&muted=true';
+      player.src = 'https://www.youtube.com/embed/' + video + '?autoplay=1&mute=1';
       player.allowFullscreen = true;
-      player.allow = 'autoplay; fullscreen';
-      player.title = 'Aleph Void Glitch Radio — Twitch player';
+      player.allow = 'autoplay; fullscreen; encrypted-media; picture-in-picture';
+      player.title = 'Aleph Void Glitch Radio — YouTube player';
       document.getElementById('player').appendChild(player);
 
       var chat = document.createElement('iframe');
-      chat.src = 'https://www.twitch.tv/embed/' + channel + '/chat?parent=' + parent + '&darkpopout';
-      chat.title = 'Aleph Void Glitch Radio — Twitch chat';
+      chat.src = 'https://www.youtube.com/live_chat?v=' + video + '&embed_domain=' + host;
+      chat.title = 'Aleph Void Glitch Radio — YouTube live chat';
       document.getElementById('chat').appendChild(chat);
     })();
   </script>
