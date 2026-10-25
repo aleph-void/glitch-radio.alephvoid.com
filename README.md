@@ -1,5 +1,7 @@
 # glitch-radio.alephvoid.com
 
+[![Sponsor Aleph Void](https://img.shields.io/badge/Sponsor-Aleph%20Void-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/aleph-void)
+
 Landing page for **Aleph Void Glitch Radio** — a 24/7 glitch music stream on YouTube, operated by Aleph Void, LLC.
 
 Live at [glitch-radio.alephvoid.com](https://glitch-radio.alephvoid.com/). Sibling station: [chiptune-radio.alephvoid.com](https://chiptune-radio.alephvoid.com/).
