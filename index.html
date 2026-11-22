@@ -479,6 +479,23 @@
       line-height: 1.65;
     }
 
+    /* AI usage */
+    .ai-callout {
+      max-width: 760px;
+      margin-bottom: 2rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-left: 3px solid var(--accent-light);
+      border-radius: 8px;
+      color: var(--text-primary);
+      line-height: 1.65;
+    }
+
+    .ai-callout strong {
+      font-weight: 600;
+    }
+
     /* Connect */
     .connect-links {
       display: flex;
@@ -704,6 +721,36 @@
           <div class="about-icon">&#x1f47e;</div>
           <h3>By Aleph Void</h3>
           <p>Built and operated by Aleph Void, LLC — a software security and reverse engineering firm that spends its days finding the places where systems come apart.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai-usage">
+    <div class="section-inner">
+      <p class="section-label">// AI Usage</p>
+      <h2 class="section-title">How LLMs Are Used</h2>
+      <p class="section-desc">Large language models (LLMs) helped build this station. They do not make its music.</p>
+
+      <p class="ai-callout"><strong>No LLM generates the songs.</strong> No language model or other generative AI model composes, arranges, or synthesizes any track you hear on this stream.</p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">&#x1f3b2;</div>
+          <h3>How Songs Are Made</h3>
+          <p>Every track is composed by a procedural generator written in Python: rule-based algorithms for rhythm, form, and sound design, driven by seeded randomness. It is then played live by a drum-machine app and a hardware synthesizer.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">&#x1f6e0;</div>
+          <h3>Where LLMs Helped</h3>
+          <p>LLM coding assistants helped write and review the software around the music: the generator's source code, the automation that keeps the stream on the air, and this website.</p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">&#x1f6ab;</div>
+          <h3>Not in the Signal Path</h3>
+          <p>When a song is generated, no LLM is called. The generator is an ordinary program, and its output comes from its rules and a random seed, not from a model's output.</p>
         </div>
       </div>
     </div>
