@@ -28,6 +28,14 @@
 
   <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
   <link rel="icon" type="image/png" href="/assets/logo.png" sizes="256x256">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Glitch Radio">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <script src="/pwa.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=EB+Garamond&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -814,6 +822,8 @@
 
   <script>
     (function () {
+      // Launched as an installed app: pwa.js is redirecting to YouTube, skip the embeds.
+      if (document.documentElement.classList.contains('pwa-launch')) return;
       var video = 'PKeXIXnZOKQ';
       // The YouTube live chat embed requires an `embed_domain` matching the host,
       // so build the iframes from location.hostname to work in dev and prod.
