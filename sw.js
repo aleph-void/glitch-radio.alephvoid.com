@@ -4,7 +4,7 @@
  * away); same-origin static assets are stale-while-revalidate.
  * Bump VERSION to drop old caches.
  */
-var VERSION = 'v1';
+var VERSION = 'v2';
 var CACHE = 'radio-' + VERSION;
 var PRECACHE = [
   '/',

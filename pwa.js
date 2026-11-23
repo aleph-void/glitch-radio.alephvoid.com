@@ -52,8 +52,8 @@
     'align-items:center;justify-content:center;gap:1.25rem;padding:1.5rem;' +
     'text-align:center;background:var(--bg-primary,#0a0a0f);' +
     'color:var(--text-primary,#f4f4f5);font-family:var(--font-body,system-ui,sans-serif)}' +
-    '#pwa-launch img{width:96px;height:96px;border-radius:16px;' +
-    'border:2px solid var(--accent,#6d28d9);background:#fff}' +
+    '#pwa-launch img{width:112px;height:112px;' +
+    'filter:drop-shadow(0 8px 32px rgba(139,92,246,0.35))}' +
     '#pwa-launch p{margin:0;color:var(--text-secondary,#a1a1aa);max-width:22rem;line-height:1.5}' +
     '#pwa-launch a.pwa-open{display:inline-block;padding:0.85rem 1.75rem;border-radius:999px;' +
     'background:var(--accent,#6d28d9);color:#fff;font-weight:600;text-decoration:none}' +
@@ -79,7 +79,7 @@
     var el = document.createElement('div');
     el.id = 'pwa-launch';
     el.innerHTML =
-      '<img src="/assets/icons/icon-192.png" alt="">' +
+      '<img src="/assets/icons/icon-512.png" alt="">' +
       '<p>Opening the Aleph Void channel on YouTube&hellip;</p>' +
       '<a class="pwa-open" href="' + WEB_URL + '">Open YouTube</a>' +
       '<a class="pwa-stay" href="/?stay">Stay on this site</a>';
